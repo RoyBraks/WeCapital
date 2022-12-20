@@ -8,20 +8,32 @@ import Account from './views/account.vue'
 import AdvancedCharts from './views/advancedcharts.vue'
 import Settings from './views/settings.vue'
 import More from './views/more.vue'
-import Login from './views/login.vue'
+import Home from './views/home.vue'
 
+// wallet pages
+
+import Crypto from '@/views/wallet/crypto.vue'
+
+const app = createApp(App)
 
 const router = VueRouter.createRouter({
     mode: 'history',
     history: VueRouter.createWebHashHistory(),
     routes: [
-        {path: '/wallet', Component: Wallet},
-        {path: '/account', Component: Account},
-        {path: '/Advancedcharts', Component: AdvancedCharts},
-        {path: '/settings', Component: Settings},
-        {path: '/more', Component: More},
-        {path: '/', Component: Login}
+        {path: '/wallet', component: Wallet,
+        children: [
+            {
+                path: '/crypto',
+                name: Crypto,
+            }
+        ]
+        },
+        {path: '/account', component: Account},
+        {path: '/Advancedcharts', component: AdvancedCharts},
+        {path: '/settings', component: Settings},
+        {path: '/more', component: More},
+        {path: '/', component: Home}
     ]
 })
 
-createApp(App).mount('#app')
+app.use(router).mount('#app')
