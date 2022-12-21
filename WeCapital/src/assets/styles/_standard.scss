@@ -52,6 +52,10 @@
     isolation: isolate;
   }
 
+  button{
+    cursor: pointer;
+  }
+
 @import "@/assets/styles/_variables.scss";
 @import "@/assets/styles/_fonts.scss";
 

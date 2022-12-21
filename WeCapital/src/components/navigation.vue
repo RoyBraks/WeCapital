@@ -26,7 +26,7 @@
                 </svg>
                 </router-link>
 
-                <router-link to="/wallet" class="navbar_icon" :class="{'navbar_icon--active': pageName == '/wallet'}">
+                <router-link to="/cryptowallet" class="navbar_icon" :class="{'navbar_icon--active': pageName == '/cryptowallet'}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="39.155" height="39.155" viewBox="0 0 38.187 35.25">
   <g id="Icon_ionic-ios-wallet" data-name="Icon ionic-ios-wallet" transform="translate(-3.375 -1.499)">
     <g id="Path_11" data-name="Path 11" transform="translate(0 -0.937)" fill="none" stroke-linecap="round">

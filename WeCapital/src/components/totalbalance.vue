@@ -1,7 +1,3 @@
-<script setup>
-import navigation from '@/components/navigation.vue';
-</script>
-
 <template>
     <div class="balancetopcontainer">
         
@@ -27,12 +23,6 @@ import navigation from '@/components/navigation.vue';
         </div>      
             
     </div>
-
-    <div>
-        <router-view name="Crypto"></router-view>
-    </div>
-
-    <navigation />
 </template>
 
 <style lang="scss">
@@ -57,11 +47,12 @@ h4{
         justify-content: center;
         height: 18%;
         border-radius: 0 0 4rem 4rem;
-        padding: 0 8%;
+        padding: 0 8%;       
 
     }
 
     .balancecontainer{
+        
         display: flex;
         flex-direction: column;
         gap: 1.8rem;

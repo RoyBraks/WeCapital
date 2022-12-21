@@ -9,10 +9,10 @@
         <text id="wecapital" transform="translate(187 62)" fill="#fff" font-size="78" font-family="AbeatbyKai, abeatbyKai"><tspan x="-186.81" y="0">we</tspan><tspan y="0" fill="#0090ff">capital</tspan></text>
         </svg>
         <button class="login">
-            <router-link class="login" to="/wallet">LOG IN</router-link>
+            <router-link to="/cryptowallet">LOG IN</router-link>
         </button>
         <button class="signup">
-            <router-link class="signup" to="/wallet">SIGN UP</router-link>
+            <router-link to="/cryptowallet">SIGN UP</router-link>
         </button>
         <hr>
         <div class="socials">
@@ -62,7 +62,7 @@
         color: inherit;
     }
 
-    button{
+    .login,.signup{
         border: none;
         outline: none;
         border: solid;

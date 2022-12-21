@@ -27,13 +27,14 @@ body{
 
 }
 
+
 #app{
     width: 37.5rem;
     position: relative;
     max-height: 81.2rem;
     height: calc(101vh - 10rem);
     overflow-y: scroll;
-    background: linear-gradient(135deg, rgba(0,144,255,0.37) 0%, rgba(2,0,36,0) 30%);
+    background: linear-gradient(135deg, rgba(0,144,255,0.37) 0%, rgba(2,0,36,0) 40%);
     background-color: $color-primary-black;
 
     
