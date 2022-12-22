@@ -1,8 +1,6 @@
 <script setup>
     import navigation from '@/components/navigation.vue';
     import totalBalance from '@/components/totalBalance.vue';
-
-
 </script>
 
 <template>
@@ -81,7 +79,36 @@
         
     </div>
 
-    <navigation />
+    <div class="trendingTab">
+        <div class="trendingTab--title">
+            TRENDING
+        </div>
+        <div class="trendingTab--catagory">
+            <div class="trendingTab--catagory--bar" ></div>
+            <div class="trendingTab--catagory--container">
+                <button class="trendingTab--catagory--container--gain">
+                    TOP GAINERS
+                </button>
+                <button class="trendingTab--catagory--container--lose">
+                    TOP LOSERS
+                </button>
+                <button class="trendingTab--catagory--container--volume">
+                    VOLUME
+                </button>
+            </div>
+            <hr>
+        </div>
+        <div class="trendingTab--buttons">
+                <button class="trendingTab--buttons--first">
+                </button>
+                <button class="trendingTab--buttons--second">
+                </button>
+                <button class="trendingTab--buttons--third">
+                </button>
+        </div>
+    </div>
+
+    <navigation style="position: fixed;" />
 </template>
 
 <script>
@@ -182,6 +209,26 @@
             border: none;
             background-color: $color-primary-black;
             box-shadow: black 0px 0px 3px;
+        }
+    }
+}
+
+.trendingTab{
+    margin-top: 2rem;
+    text-align: center;
+
+    &--title{
+        font-size: 2rem;
+    }
+
+    &--catagory{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &--bar{
+            width: 85%;
+            background-color: radial-gradient(circle, $color-primary 0, $color-primary-black 100%);
         }
     }
 }

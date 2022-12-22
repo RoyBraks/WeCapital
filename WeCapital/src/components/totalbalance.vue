@@ -45,7 +45,7 @@ h4{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 18%;
+        height: 13rem;
         border-radius: 0 0 4rem 4rem;
         padding: 0 8%;       
 

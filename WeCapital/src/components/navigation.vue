@@ -99,9 +99,9 @@
 .navbar{
     width: 37.5rem;
     background-color: $color-primary-black;
-    height: 10%;
+    height: 8rem;
     position: absolute;
-    bottom: 0;
+    bottom: 5%;
 }
 
 .wrapper-nav{
