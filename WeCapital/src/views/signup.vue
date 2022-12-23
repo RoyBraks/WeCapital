@@ -8,11 +8,13 @@
         <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="374" height="78" viewBox="0 0 374 78">
         <text id="wecapital" transform="translate(187 62)" fill="#fff" font-size="78" font-family="AbeatbyKai, abeatbyKai"><tspan x="-186.81" y="0">we</tspan><tspan y="0" fill="#0090ff">capital</tspan></text>
         </svg>
-        <button class="login">
-            <router-link to="/cryptowallet">LOG IN</router-link>
-        </button>
+        <form class="container-login--form">
+            <input type="email" placeholder="name@example.com" class="container-login--form--email" required />
+            <br />
+            <input type="password" placeholder="password" class="container-login--form--password" required />
+            </form>
         <button class="signup">
-            <router-link to="/signup">SIGN UP</router-link>
+            <router-link to="/cryptowallet">SIGN UP</router-link>
         </button>
         <hr>
         <div class="socials">
@@ -50,6 +52,22 @@
         margin-top: 65%;
 
         align-items: center;
+
+        &--form{
+            width: 70%;
+            &--email, &--password{
+                background-color: transparent;
+                border: solid;
+                border-color: $color-primary;
+                border-radius: 1rem;
+                margin-bottom: 1rem;
+                width: 100%;
+                height: 3.5rem;
+                color: $color-white;
+                text-align: center;
+                font-size: small;
+            }
+        }
     }
 
     .logo{
@@ -62,7 +80,7 @@
         color: inherit;
     }
 
-    .login,.signup{
+    .signup{
         border: none;
         outline: none;
         border: solid;
@@ -70,12 +88,6 @@
         font-size: small;
         width: 70%;
         height: 3.5rem;
-    }
-
-    .login{
-        color: $color-primary;
-        background-color: transparent;
-        border-color: $color-primary;
     }
 
     .signup{

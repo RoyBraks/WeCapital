@@ -9,6 +9,7 @@ import AdvancedCharts from './views/advancedcharts.vue'
 import Settings from './views/settings.vue'
 import More from './views/more.vue'
 import Home from './views/home.vue'
+import Signup from './views/signup.vue'
 
 const app = createApp(App)
 
@@ -21,7 +22,8 @@ const router = VueRouter.createRouter({
         {path: '/Advancedcharts', component: AdvancedCharts},
         {path: '/settings', component: Settings},
         {path: '/more', component: More},
-        {path: '/', component: Home}
+        {path: '/', component: Home},
+        {path: '/signup', component: Signup}
     ]
 })
 

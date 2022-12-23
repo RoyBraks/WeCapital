@@ -1,8 +1,3 @@
-<script setup>
-    import navigation from '@/components/navigation.vue';
-    import totalBalance from '@/components/totalBalance.vue';
-</script>
-
 <template>
     <totalBalance />
 
@@ -79,6 +74,8 @@
         
     </div>
 
+
+
     <div class="trendingTab">
         <div class="trendingTab--title">
             TRENDING
@@ -86,39 +83,44 @@
         <div class="trendingTab--catagory">
             <div class="trendingTab--catagory--bar" ></div>
             <div class="trendingTab--catagory--container">
-                <button class="trendingTab--catagory--container--gain">
-                    TOP GAINERS
-                </button>
-                <button class="trendingTab--catagory--container--lose">
-                    TOP LOSERS
-                </button>
-                <button class="trendingTab--catagory--container--volume">
-                    VOLUME
-                </button>
+                <tabs v-model="activeTab">
+                    <template name="gain">
+                        <p>Test 1</p>
+                    </template>
+                    <template name="lose">
+                        <p>This is tab 2 content</p>
+                    </template>
+                </tabs>
             </div>
-            <hr>
-        </div>
-        <div class="trendingTab--buttons">
-                <button class="trendingTab--buttons--first">
-                </button>
-                <button class="trendingTab--buttons--second">
-                </button>
-                <button class="trendingTab--buttons--third">
-                </button>
+            <div class="trendingTab--catagory--bar" ></div>
         </div>
     </div>
-
     <navigation style="position: fixed;" />
 </template>
 
 <script>
+
+    import navigation from '@/components/navigation.vue';
+    import totalBalance from '@/components/totalBalance.vue';
+    import Tabs from './Tabs.vue';
+
     export default {
         computed: {
             pageName () {
                 return this.$router.currentRoute.value.path
             }
+        },
+
+        name: 'MyTabs',
+        components: {
+            Tabs
+        },
+        data() {
+            return {
+            activeTab: 'tab1'
+            }
         }
-    }
+    }  
 </script>
 
 <style lang="scss">
@@ -211,6 +213,12 @@
             box-shadow: black 0px 0px 3px;
         }
     }
+
+    &--ViewAll{
+        text-align: center;
+        font-size: small;
+        color: $color-primary;
+    }
 }
 
 .trendingTab{
@@ -228,7 +236,19 @@
 
         &--bar{
             width: 85%;
-            background-color: radial-gradient(circle, $color-primary 0, $color-primary-black 100%);
+            height: 1px;
+            margin: 0.5rem 0;
+            background: radial-gradient(circle, $color-primary 0, $color-primary-black 100%);
+        }
+
+        &--container{
+
+            &--gain, &--lose, &--volume{
+                width: 10rem;
+                font-size: x-small;
+                color: $color-white;
+                background-color: transparent;
+            }
         }
     }
 }
