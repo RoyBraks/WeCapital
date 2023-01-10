@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import * as VueRouter from 'vue-router'
 import App from './App.vue'
+import {Tabs, Tab} from 'vue3-tabs-component';
 
 
 import cryptoWallet from './views/cryptowallet.vue'
@@ -27,4 +28,8 @@ const router = VueRouter.createRouter({
     ]
 })
 
-app.use(router).mount('#app')
+app
+.use(router)
+.component('tabs', Tabs)
+.component('tab', Tab)
+.mount('#app')

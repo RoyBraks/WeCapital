@@ -83,26 +83,50 @@
         <div class="trendingTab--catagory">
             <div class="trendingTab--catagory--bar" ></div>
             <div class="trendingTab--catagory--container">
-                <tabs v-model="activeTab">
-                    <template name="gain">
-                        <p>Test 1</p>
-                    </template>
-                    <template name="lose">
+                <tabs class="trendingTab--catagory--container--tabheader" :options="{ useUrlFragment: false }">
+                    <div class="trendingTab--catagory--bar" style="width: 70vw; position: absolute; margin-top: -1.5rem;"></div>
+                    <tab name="TOP GAINERS">
+                        <div class="trendingTab--Assets">
+                            <button class="trendingTab--Assets--Button">
+                                <div class="trendingTab--Assets--Button--Info">
+                                <div class="trendingTab--Assets--Button--Info--Logo">
+                        </div>
+                                <div class="trendingTab--Assets--Button--Info--Name">
+                                <div class="trendingTab--Assets--Button--Info--Name--Text">
+                            
+                        </div>
+
+                                <div class="trendingTab--Assets--Button--Info--Name--Amount">
+
+                        </div>
+                    </div>
+                </div>
+            </button>
+            <button class="trendingTab--Assets--Button">
+                
+            </button>
+            <button class="trendingTab--Assets--Button">
+               
+            </button>
+        </div>
+                    </tab>
+                    <tab name="TOP LOSERS">
                         <p>This is tab 2 content</p>
-                    </template>
+                    </tab>
+                    <tab name="VOLUME">
+                        <p>This is tab 2 content</p>
+                    </tab>
+                    
                 </tabs>
             </div>
-            <div class="trendingTab--catagory--bar" ></div>
         </div>
     </div>
     <navigation style="position: fixed;" />
 </template>
 
 <script>
-
     import navigation from '@/components/navigation.vue';
     import totalBalance from '@/components/totalBalance.vue';
-    import Tabs from './Tabs.vue';
 
     export default {
         computed: {
@@ -110,15 +134,9 @@
                 return this.$router.currentRoute.value.path
             }
         },
-
-        name: 'MyTabs',
         components: {
-            Tabs
-        },
-        data() {
-            return {
-            activeTab: 'tab1'
-            }
+            navigation,
+            totalBalance
         }
     }  
 </script>
@@ -229,10 +247,25 @@
         font-size: 2rem;
     }
 
+    &--Assets{
+        margin-top: 1rem;
+
+        &--Button{
+            margin-top: 1rem;
+            width: 100%;
+            height: 5rem;
+            border-radius: 1rem;
+            border: none;
+            background: linear-gradient(90deg, $color-primary-black 2%, rgba(0, 145, 255, 0.241) 100%);
+            box-shadow: black 0px 0px 3px;
+        }
+    }
+
     &--catagory{
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 1rem;
 
         &--bar{
             width: 85%;
@@ -243,6 +276,10 @@
 
         &--container{
 
+            &--tabheader{
+                text-decoration: none;
+            }
+
             &--gain, &--lose, &--volume{
                 width: 10rem;
                 font-size: x-small;
@@ -252,4 +289,33 @@
         }
     }
 }
+
+.tabs-component{
+    display: block;
+    width: 80%;
+}
+.tabs-component-tabs{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-top: 0.5rem;
+    padding: 0;
+    width: 70vw;
+    font-size: 1.2rem;
+}
+
+.tabs-component-tab{
+    width: 33%;
+    color: $color-gray;
+}
+
+.is-active{
+    color: $color-white;
+}
+
+.tabs-component-panels{
+    width: 70vw;
+    margin-top: 10%;
+}
+
 </style>

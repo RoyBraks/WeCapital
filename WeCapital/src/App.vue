@@ -1,4 +1,4 @@
-<script setup>
+<script>
 
 </script>
 
@@ -55,7 +55,7 @@ body{
 main{
     padding: 3rem;
     padding-bottom: 3.5rem;
-    min-height: calc(100% - 7.8rem);
+    min-height: calc(110% - 7.8rem);
    
 }
 </style>
