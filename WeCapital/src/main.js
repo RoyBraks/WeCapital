@@ -11,6 +11,7 @@ import Settings from './views/settings.vue'
 import More from './views/more.vue'
 import Home from './views/home.vue'
 import Signup from './views/signup.vue'
+import test from './views/test.vue'
 
 const app = createApp(App)
 
@@ -18,6 +19,7 @@ const router = VueRouter.createRouter({
     mode: 'history',
     history: VueRouter.createWebHashHistory(),
     routes: [
+        {path: '/test', component: test},
         {path: '/cryptowallet', component: cryptoWallet},
         {path: '/account', component: Account},
         {path: '/Advancedcharts', component: AdvancedCharts},

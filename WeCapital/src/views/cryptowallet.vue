@@ -84,126 +84,42 @@
                 <tabs class="trendingTab--catagory--container--tabheader" :options="{ useUrlFragment: false }">
                     <div class="trendingTab--catagory--bar" style="width: 30rem; position: absolute; margin-top: -2rem;"></div>
                     <tab name="TOP GAINERS">
-                        <div class="trendingTab--Assets">
-                            <button class="trendingTab--Assets--Button">
-                                <div class="trendingTab--Assets--Button--Info">
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(0,1)" class="trendingTab--Assets--Button--Info--Logo">
-                                        <img v-bind:src="crypto.image">
-                                    </div>
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(0,1)" class="trendingTab--Assets--Button--Info--Name">
-                                        {{ crypto.name }}
-                                    </div>
-                                </div>
-
-                                <div class="trendingTab--Assets--Button--Percentage">
-                                           
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(0,1)" class="trendingTab--Assets--Button--Percentage--Amount" :class="crypto.price_change_percentage_24h < 0 ? '--negative' : '--positive'">
-                                        <span v-for="crypto in topThreeCryptosVolume.slice(0,1)" :style="crypto.price_change_percentage_24h < 0 ? 'display: none' : 'display: block'">+</span>
-                                        <span  v-for="crypto in topThreeCryptosVolume.slice(0,1)" :style="crypto.price_change_percentage_24h > 0 ? 'display: none' : 'display: block'">-</span>
-                                        {{ crypto.price_change_percentage_24h.toFixed(2) }}%
-                                    </div>
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(0,1)" class="trendingTab--Assets--Button--Percentage--Bar" 
-                                        :class="crypto.price_change_percentage_24h < 0 ? '--negative' : '--positive'"
-                                        >
-                                    
-                                    </div>
-                                </div>
-
-                                <div v-for="crypto in topThreeCryptosVolume.slice(0,1)" class="trendingTab--Assets--Button--Price">
-                                    ${{ crypto.current_price }}
-                                </div>
-                            </button>
-                            <button class="trendingTab--Assets--Button">
-                                <div class="trendingTab--Assets--Button--Info">
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(1,2)" class="trendingTab--Assets--Button--Info--Logo">
-                                        <img v-bind:src="crypto.image">
-                                    </div>
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(1,2)" class="trendingTab--Assets--Button--Info--Name">
-                                        {{ crypto.name }}
-                                    </div>
-                                </div>
-
-                                <div class="trendingTab--Assets--Button--Percentage">
-                                           
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(1,2)" class="trendingTab--Assets--Button--Percentage--Amount" :class="crypto.price_change_percentage_24h < 0 ? '--negative' : '--positive'">
-                                        <span v-for="crypto in topThreeCryptosVolume.slice(1,2)" :style="crypto.price_change_percentage_24h < 0 ? 'display: none' : 'display: block'">+</span>
-                                        <span v-for="crypto in topThreeCryptosVolume.slice(1,2)" :style="crypto.price_change_percentage_24h > 0 ? 'display: none' : 'display: block'">-</span>
-                                        {{ crypto.price_change_percentage_24h.toFixed(2) }}%
-                                    </div>
-                                    <div v-for="crypto in topThreeCryptosVolume.slice(1,2)" class="trendingTab--Assets--Button--Percentage--Bar" 
-                                        :class="crypto.price_change_percentage_24h < 0 ? '--negative' : '--positive'"
-                                        v-bind:style="barWidthRelative"
-                                        >
-                                    </div>
-                                </div>
-
-                                <div v-for="crypto in topThreeCryptosVolume.slice(1,2)" class="trendingTab--Assets--Button--Price">
-                                    ${{ crypto.current_price }}
-                                </div>
-                
-                            </button>
-                            <button class="trendingTab--Assets--Button">
-               
-                            </button>
-                        </div>
+                        <topGainers />
                     </tab>
                     <tab name="TOP LOSERS">
-                        <p>This is tab 2 content</p>
+                        <topLosers />
                     </tab>
                     <tab name="VOLUME">
-                        <p>This is tab 2 content</p>
+                        <topVolume />
                     </tab>
                     
                 </tabs>
             </div>
         </div>
     </div>
-
+ 
     <navigation style="position: fixed;" />
 </template>
 
 <script>
+    import topVolume from '@/components/topVolume.vue';
     import navigation from '@/components/navigation.vue';
     import totalBalance from '@/components/totalBalance.vue';
-    import axios from 'axios';
+    import topGainers from '@/components/topGainers.vue'
+    import topLosers from '@/components/topLosers.vue'
 
     export default {
-        data() {
-            return {
-                topThreeCryptosVolume: [],
-                firstPriceChange: Number,
-                secondPriceChange: Number,
-                thirdPriceChange: Number,
-                positiveBarLength: Number,
-
-            }
-        },
-        mounted() {
-            axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=3&page=1')
-            .then(response => {
-                this.topThreeCryptosVolume = response.data;
-                this.firstPriceChange = this.topThreeCryptosVolume[0].price_change_percentage_24h;
-                this.secondPriceChange = this.topThreeCryptosVolume[1].price_change_percentage_24h;
-                this.thirdPriceChange = this.topThreeCryptosVolume[2].price_change_percentage_24h;
-
-                this.positiveBarLength = Math.abs(this.secondPriceChange / this.firstPriceChange);
-            }).catch(error => {
-                console.log(error);
-            });
-        },
         computed: {
             pageName () {
                 return this.$router.currentRoute.value.path
-            },
-            barWidthRelative :  function(){
-                    return {
-                        width: this.positiveBarLength + '%'
-                    }
             }
         },
         components: {
             navigation,
             totalBalance,
+            topVolume,
+            topGainers,
+            topLosers
         }
         
     }  
@@ -313,87 +229,6 @@
 
     &--title{
         font-size: 2rem;
-    }
-
-    &--Assets{
-        margin-top: 1rem;
-
-        &--Button{
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-
-            margin-top: 1rem;
-            width: 30rem;
-            height: 5rem;
-            border-radius: 1rem;
-            border: none;
-            background: linear-gradient(90deg, $color-primary-black 20%, rgba(0, 145, 255, 0.241) 100%);
-            box-shadow: black 0px 0px 3px;
-            color: $color-white;
-            padding: 0 2rem;
-
-            font-size: 1rem;
-
-            &--Info{
-                display: flex; 
-                align-items: center;
-                gap: 1rem;
-
-
-                &--Logo{
-                    width: 2.6rem;
-                }
-
-                &--Name{
-                    width: 4rem;
-                    text-align: left;
-                }
-            }
-
-            &--Percentage{
-                display: flex;
-                flex-direction: column;
-                justify-content: baseline;
-                width: 11rem;
-                &--Amount{
-                    font-size: 0.9rem;
-                    display: flex;
-                    justify-content: center;
-                    width: 12rem;
-
-                    margin-bottom: -0.5rem;
-                    &.--positive{
-                        color: $color-up;
-                    }
-
-                    &.--negative{
-                        color: $color-down;
-                    }
-                }
-
-                &--Bar{
-                    height: 0.8rem;
-                    border-radius: 1rem;
-
-                    margin-bottom: 1.7rem;
-
-                    &.--positive{
-                        background-color: $color-up;
-                    }
-
-                    &.--negative{
-                        background-color: $color-down;
-                    }
-                    
-                }
-            }
-
-            &--Price{
-                width: 4rem;
-                text-align: right;
-            }
-        }
     }
 
     &--catagory{
