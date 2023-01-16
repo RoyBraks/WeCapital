@@ -28,7 +28,7 @@
                     INVESTMENTS
                 </div>
                 <div class="investmentsTab--Header--Text--Total">
-                    $4,939.83
+                    ${{ ((btcBalance.amount * btcPriceInvestments) + (ethBalance.amount * ethPriceInvestments) + (adaBalance.amount * adaPriceInvestments)).toFixed(2)}}
                 </div>
             </div>
             <div class="investmentsTab--Header--Buttons">
@@ -46,28 +46,11 @@
         </div>
 
         <div class="investmentsTab--Assets">
-            <button class="investmentsTab--Assets--Button">
-                <div class="investmentsTab--Assets--Button--Info">
-                    <div class="investmentsTab--Assets--Button--Info--Logo">
 
-                    </div>
-                    <div class="investmentsTab--Assets--Button--Info--Name">
-                        <div class="investmentsTab--Assets--Button--Info--Name--Text">
-                            
-                        </div>
+            <investmentBlockBTC />
+            <investmentBlockETH />
+            <investmentBlockADA />
 
-                        <div class="investmentsTab--Assets--Button--Info--Name--Amount">
-
-                        </div>
-                    </div>
-                </div>
-            </button>
-            <button class="investmentsTab--Assets--Button">
-                
-            </button>
-            <button class="investmentsTab--Assets--Button">
-               
-            </button>
         </div>
 
         <p class="investmentsTab--ViewAll">View All</p>
@@ -102,14 +85,52 @@
 </template>
 
 <script>
-    import topVolume from '@/components/topVolume.vue';
-    import navigation from '@/components/navigation.vue';
-    import totalBalance from '@/components/totalBalance.vue';
+    import topVolume from '@/components/topVolume.vue'
+    import navigation from '@/components/navigation.vue'
+    import totalBalance from '@/components/totalBalance.vue'
     import topGainers from '@/components/topGainers.vue'
     import topLosers from '@/components/topLosers.vue'
+    import investmentBlockBTC from '@/components/investmentBlockBTC.vue'
+    import investmentBlockETH from '@/components/investmentBlockETH.vue'
+    import investmentBlockADA from '@/components/investmentBlockADA.vue'
+
+    import axios from 'axios';
+
+    import { useBTCBalance } from '@/stores/BTCBalance.js'
+    import { useETHBalance } from '@/stores/ETHBalance.js'
+    import { useADABalance } from '@/stores/ADABalance.js'
 
     export default {
-        computed: {
+        setup(){
+            const btcBalance = useBTCBalance();
+            const ethBalance = useETHBalance();
+            const adaBalance = useADABalance();
+
+            return { btcBalance, ethBalance, adaBalance }
+        }
+        ,data(){
+            return{
+                btcPriceInvestments: Number,
+                ethPriceInvestments: Number,
+                adaPriceInvestments: Number,
+            }
+        }
+        ,mounted() {
+            axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano&vs_currencies=usd&precision=2')
+            .then(response => {
+                this.priceInvestments = response.data;
+
+                this.btcPriceInvestments = this.priceInvestments.bitcoin.usd;
+                
+                this.ethPriceInvestments = this.priceInvestments.ethereum.usd;
+                
+                this.adaPriceInvestments = this.priceInvestments.cardano.usd;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+        ,computed: {
             pageName () {
                 return this.$router.currentRoute.value.path
             }
@@ -119,10 +140,12 @@
             totalBalance,
             topVolume,
             topGainers,
-            topLosers
-        }
-        
-    }  
+            topLosers,
+            investmentBlockBTC,
+            investmentBlockETH,
+            investmentBlockADA
+        },
+    } 
 </script>
 
 <style lang="scss">
@@ -165,9 +188,10 @@
         display: flex;
         align-items: flex-end;
         align-content: space-between;
+        margin-bottom: 1.8rem;
+
 
         &--Text{
-
             &--Header{
                 color: $color-primary;
                 font-size: 1.7rem;
@@ -200,22 +224,6 @@
             }
         }
     }
-
-    &--Assets{
-
-        margin-top: 1rem;
-        
-        &--Button{
-            margin-top: 1rem;
-            width: 100%;
-            height: 5rem;
-            border-radius: 1rem;
-            border: none;
-            background-color: $color-primary-black;
-            box-shadow: black 0px 0px 3px;
-        }
-    }
-
     &--ViewAll{
         text-align: center;
         font-size: small;
