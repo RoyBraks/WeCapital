@@ -5,9 +5,7 @@
 <template>
     <div class="wrapper-login">
     <div class="container-login">
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="374" height="78" viewBox="0 0 374 78">
-        <text id="wecapital" transform="translate(187 62)" fill="#fff" font-size="78" font-family="AbeatbyKai, abeatbyKai"><tspan x="-186.81" y="0">we</tspan><tspan y="0" fill="#0090ff">capital</tspan></text>
-        </svg>
+        <img class="logo" src="@/assets/LogoWCtext.png">
         <form class="container-login--form">
             <input type="email" placeholder="name@example.com" class="container-login--form--email" required />
             <br />

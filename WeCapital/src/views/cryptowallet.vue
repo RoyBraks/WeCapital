@@ -234,7 +234,7 @@
 .trendingTab{
     margin-top: 2rem;
     text-align: center;
-
+    margin-bottom: 10rem;
     &--title{
         font-size: 2rem;
     }

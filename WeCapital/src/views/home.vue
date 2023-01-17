@@ -5,12 +5,12 @@
 <template>
     <div class="wrapper-login">
     <div class="container-login">
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="374" height="78" viewBox="0 0 374 78">
-        <text id="wecapital" transform="translate(187 62)" fill="#fff" font-size="78" font-family="AbeatbyKai, abeatbyKai"><tspan x="-186.81" y="0">we</tspan><tspan y="0" fill="#0090ff">capital</tspan></text>
-        </svg>
+        <img class="logo" src="@/assets/LogoWCtext.png">
+
         <button class="login">
             <router-link to="/cryptowallet">LOG IN</router-link>
         </button>
+        
         <button class="signup">
             <router-link to="/signup">SIGN UP</router-link>
         </button>
@@ -53,7 +53,6 @@
     }
 
     .logo{
-        width: 90%;
         margin-bottom: 28%;
     }
 
