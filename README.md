@@ -22,4 +22,4 @@ There are a few applications that you need to install to use the app in a local 
 ## State of the development
 
 The app is currently still in the early stages of development. It currently uses the Coingecko API to get current crypto information (Prices, logo's, price changes etc.).
-The stocks and NFTs section aren't developed yet. The crypto page has soem data shown.
+The stocks and NFTs section aren't developed yet. The crypto page has some data shown.
